@@ -18,6 +18,8 @@ function hook_RegisterNatives() {
     if (addrRegisterNatives != null) {
         Interceptor.attach(addrRegisterNatives, {
             onEnter: function (args) {
+                // output trace
+                // console.log('RegisterNatives called from:\n' + Thread.backtrace(this.context, Backtracer.ACCURATE).map(DebugSymbol.fromAddress).join('\n') + '\n');
                 console.log("[RegisterNatives] method_count:", args[3]);
                 var env = args[0];
                 var java_class = args[1];
